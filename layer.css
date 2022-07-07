@@ -1,0 +1,41 @@
+/* to the body element */
+
+
+.overlay { 
+   position: fixed; 
+
+   top: 0; right: 0; bottom: 0; left: 0; }
+
+   [aria-hidden="true"] { display: none; }
+   [aria-hidden="false"] { display: block; }
+
+.overlay div {
+   margin: 15vh auto;
+   width: 80%;
+   max-width: 650px;
+   padding: 30px;
+
+}
+
+.overlay {
+    background:  rgba(40,40,40, .75);
+}
+
+* { box-sizing: border-box; }
+
+pre { background: #fafafa; padding: 15px; border: 1px #ccd dashed; }
+pre + p { margin: 5vh 0; }
+
+.btn_theme {
+
+}
+
+.edit_nick {
+   box-shadow: 0 0 10px 3px rgba(0,0,0,0);
+   border-radius: 50%;
+    transition: 0.2s linear;
+    margin-left: 1em;
+}
+.edit_nick:hover {
+   box-shadow: 0 0 10px 7px rgba(0,255,0,.9);
+}
