@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Расслабуха</title>
-    <link rel="stylesheet" href="/styles3.css">
+    <link rel="stylesheet" href="/styles4.css">
     <link rel="shortcut icon" href="/images/domoi.jpg" type="image/jpg">
 </head>
 <body>
@@ -13,7 +13,7 @@
             <a class='domoi bashnya' href='../index.html'>ГЛАВНАЯ</a>
             <a class="rules bashnya" href='../rules.html'>ПРАВИЛА</a>
             <a class="news bashnya" href='../news.html'>НОВОСТИ</a>
-            <a class="trading bashnya" href='../trading.html'>ТРЕЙДИНГ</a>
+            <a class="trading bashnya" href='community.php'>СООБЩЕСТВО</a>
             <a class="account bashnya" href='../account.php'>АККАУНТ</a>
         </div>
     </header>

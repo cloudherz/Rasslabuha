@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Аккаунт Расслабуха</title>
-    <link rel="stylesheet" href="styles3.css" type="text/css">
+    <link rel="stylesheet" href="styles4.css" type="text/css">
     <link rel="stylesheet" href="layer.css" type="text/css">
     <link rel="shortcut icon" href="/images/domoi.jpg" type="image/jpg">
 </head>
@@ -14,7 +14,7 @@
             <a class='domoi bashnya' href='index.php'>ГЛАВНАЯ</a>
             <a class="rules bashnya" href='rules.html'>ПРАВИЛА</a>
             <a class="news bashnya" href='news.html'>НОВОСТИ</a>
-            <a class="trading bashnya" href='trading.html'>ТРЕЙДИНГ</a>
+            <a class="trading bashnya" href='community.php'>СООБЩЕСТВО</a>
             <a class="account bashnya" href='account.php'>АККАУНТ</a>
         </div>
     </header>
@@ -311,84 +311,89 @@
                 <p class='grey59_down'><a class='sh1ft' href="https://vk.com/sh1ft_yt"> &#169; by Sh1ft 2022</a></p>
             </div>
         <?php elseif($developer != ''):?>
-            <div class="container">
+        <div class="container">
 
-                    <button class='toggle-theme btn_theme' style='margin-top: 1em;'>Тема</button>
-                    <div class='nobody_hears_u_div'>
-                        <p class='grey59_down'><a class='sh1ft' href="https://vk.com/sh1ft_yt"> &#169; by Sh1ft 2022</a></p>
-                    </div>
-
-
-
-
-
-                    <div style="margin: 0 0; padding-left: 0px">
-                        <?
-
-                        require "validation-form/connect.php";
-                        $limit = 3;
-                        $page = intval(@$_GET['page']);
-                        $page = (empty($page)) ? 1 : $page;
-                        $start = ($page != 1) ? $page * $limit - $limit : 0;
-                        $sth = $dbh->prepare("SELECT SQL_CALC_FOUND_ROWS * FROM `posts` LIMIT {$start}, {$limit}");
-                        $sth->execute();
-                        $items = $sth->fetchAll(PDO::FETCH_ASSOC);
-
-                        $sth = $dbh->prepare("SELECT FOUND_ROWS()");
-                        $sth->execute();
-                        $total = $sth->fetch(PDO::FETCH_COLUMN);
-                        $amt = ceil($total / $limit);
-
-                        ?>
-                        <div id="showmore-list">
-                            <div class="prod-list">
-                                <?php foreach ($items as $row): ?>
-                                    <div class="prod-item">
-                                        <div class="prod-item-img">
-                                            <img src="/images/<?php echo $row['post_image']; ?>" alt="">
-                                        </div>
-                                        <div class="prod-item-name">
-                                            <?php echo $row['post_id']; ?>
-                                        </div>
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
-                        </div>
-
-                        <div class="showmore-bottom">
-                            <a data-page="1" data-max="<?php echo $amt; ?>" id="showmore-button" href="#">Показать еще</a>
-                        </div>
-
-                        <script>
-                            $(function(){
-                                $('#showmore-button').click(function (){
-                                    var $target = $(this);
-                                    var page = $target.attr('data-page');
-                                    page++;
-
-                                    $.ajax({
-                                        url: '/ajax.php?page=' + page,
-                                        dataType: 'html',
-                                        success: function(data){
-                                            $('#showmore-list .prod-list').append(data);
-                                        }
-                                    });
-
-                                    $target.attr('data-page', page);
-                                    if (page ==  $target.attr('data-max')) {
-                                        $target.hide();
-                                    }
-
-                                    return false;
-                                });
-                            });
-                        </script>
-                    </div>
-                </div>
+            <button class='toggle-theme btn_theme' style='margin-top: 1em;'>Тема</button>
+            <div class='nobody_hears_u_div'>
+                <p class='grey59_down'><a class='sh1ft' href="https://vk.com/sh1ft_yt"> &#169; by Sh1ft 2022</a></p>
             </div>
 
 
-        <?php elseif($admin != ''):?>
+
+
+
+            <div style="margin: 0 0; padding-left: 0px">
+                <?
+
+                require "validation-form/connect.php";
+
+
+
+
+
+                $result = mysqli_query($mysql, 'SELECT * FROM `posts` ORDER BY `post_id` DESC');
+
+                while ($row = mysqli_fetch_assoc($result))// получаем все строки в цикле по одной
+                {
+
+                    echo '<div style="margin-left: 0px;margin-right: 0px;" class="posts_div">';
+                    echo '<div style="margin: 0 0; display: flex;">';
+                    echo '<div src="avаtars/'.$row['user_avatar'].'" href="id'.$id.'"  style="background-image: url(avatars/'.$row['user_avatar']. ');
+                                background-size: 120px; background-position: center; background-repeat: no-repeat;
+                                width: 100px; height:100px; max-height: 1000px;border-radius: 23px;border: 8px solid #2E2E2E;margin-bottom: 10px;display: flex;)"
+                                 class="avatarka posts_avatarka"></div>
+                                 <p class="posts_nick"><a style="margin-left: 0;width: 300px;margin-right: 0px;display: flex;" class="user_nick_adress_id" href="id'.$row['user_id'].'">'.$row['user_nick'].'</a></p>';
+                    echo '</div>';
+                    if ($row['post_image'] != ''){
+                        echo '<div style="margin: 0 0">';
+                        echo '<p class="posts_text_two">'.$row['post_text'].'</p>';
+                        echo '</div>';
+                        echo '<img src="posts_image/'.$row['post_image'].'" class="avatarka posts_image">';
+                    }else{
+                        echo '<div style="margin: 0 0">';
+                        echo '<p class="posts_text">'.$row['post_text'].'</p>';
+                        echo '</div>';
+                    }
+                    echo '</div>';
+                    /*
+                    echo '<p>Айди поста - '.$row['post_id'].'</p>';// выводим данные
+                    echo '<p>Логин опубликовавшего - '.$row['user_id'].'</p>';
+                    echo '<p>Ник опубликовавшего - '.$row['user_nick'].'</p>';
+                    echo '<p>Ава опубликовавшего текстом- '.$row['user_avatar'].'</p>';
+                    echo '<p>Ник опубликовавшего - '.$row['post_hash'].'</p>';
+                    echo '<p>Текст публикации - '.$row['post_text'].'</p>';
+                    echo '<p>Картинка публикации текстом - '.$row['post_image'].'</p>';
+                    echo '<p>Хэш публикации - '.$row['post_hash'].'</p>';
+                    echo '<img src="posts_image/'.$row['post_image'].'"  style="width: 416px;max-height: 1000px;border-radius: 23px;border: 8px solid rgba(0,0,0,.4);margin-bottom: 10px;" class="avatarka">';
+                    echo '<img src="avatars/'.$row['user_avatar'].'"  style="width: 100px;max-height: 1000px;border-radius: 23px;border: 8px solid rgba(0,0,0,.4);margin-bottom: 10px;" class="avatarka">';
+                    echo '<br>';
+                     */
+
+
+                }
+                echo '<p style="color: #646464">Создайте пост! Напишите что-нибудь в поле для ввода текста! Ах да, и не забудьте прикрепить картонку =--)</p>';
+                /*
+                 echo '<p>ТЕКСТ'.$row['ЯЧЕЙКА СТРОКИ В БД'].'</p>'; --- ОБЩИЙ ПРИМЕР
+
+                echo --- ВЫВОДИМ
+
+                '<p> --- ОТКРЫВАЕМ ТЕГ
+
+                ТЕКСТ --- ЛЮБОЙ ВАЩЕ ТЕКСТ
+
+                '.$row['ЯЧЕЙКА СТРОКИ В БД'].' --- УКАЗЫВАЕМ КАКАЯ ЯЧЕЙКА ИЗ БД НАМ НУЖНА
+
+                </p>' --- ЗАКРЫВАЕМ ТЕГ
+
+                ; --- КОНЕЦ ВЫВОДА
+                 */
+                ?>
+            </div>
+        </div>
+</div>
+
+
+<?php elseif($admin != ''):?>
             <div class="container">
 
                 <button class='toggle-theme btn_theme' style='margin-top: 1em;'>Тема</button>
@@ -564,7 +569,7 @@
         </div>
     </footer>
 </div>
-<script type="text/javascript" src="main.js"></script>
+<script type="text/javascript" src="main1.js"></script>
 <script type="text/javascript" src="theme.js"></script>
 <script>
     var body = document.body,

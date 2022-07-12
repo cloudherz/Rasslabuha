@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Расслабуха</title>
-  <link rel="stylesheet" href="styles3.css">
+  <link rel="stylesheet" href="styles4.css">
     <link rel="shortcut icon" href="/images/domoi.jpg" type="image/jpg">
 </head>
 <body>
@@ -13,7 +13,7 @@
                 <a class='domoi bashnya' href='index.php'>ГЛАВНАЯ</a>
                 <a class="rules bashnya" href='rules.html'>ПРАВИЛА</a>
                 <a class="news bashnya" href='news.html'>НОВОСТИ</a>
-                <a class="trading bashnya" href='trading.html'>ТРЕЙДИНГ</a>
+                <a class="trading bashnya" href='community.php'>СООБЩЕСТВО</a>
                 <a class="account bashnya" href='account.php'>АККАУНТ</a>
             </div>  
         </header>
@@ -94,11 +94,8 @@
                     <p class='profile_text_nick' style="margin-left: 1em; font-size: 2.2em; margin-top: 0em;">Кристаллов: <?=$array['money']?></p>
                 </div>                    
             </div>
-
-
-
-
             <?php else:?>
+                <?php if($_COOKIE['user'] != ''):?>
                 <div class="container">
                     <div class="profile_avatarka">
                         <div class="profile_avatarka_ava">
@@ -123,6 +120,19 @@
                         <p class='profile_text_nick' style="margin-left: 1em; font-size: 2.2em; margin-top: 0em;">Кристаллов: <?=$array['money']?></p>
                     </div>
                 </div>
+                <?php else:?>
+                    <div class="container">
+                        <div class="profile_avatarka">
+                            <p class='profile_text_nick' style="margin-left: 1em; font-size: 2.2em; margin-top: 0em;">Вы не вошли в аккаунт!</p>
+                            <button class='toggle-theme btn_theme' style='margin-top: 20em;'>Тема</button>
+                            <div class='nobody_hears_u_div'>
+                                <p class='grey59_down'><a class='sh1ft' href="https://vk.com/sh1ft_yt"> &#169; by Sh1ft 2022</a></p>
+                            </div>
+                        </div>
+                        <div class="profile_text">
+                        </div>
+                    </div>
+                <?php endif;?>
         <?php endif;?>
         </main>
         <footer class="footer">
@@ -133,7 +143,7 @@
             </div>            
         </footer>
     </div>
-    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="main1.js"></script>
     <script type="text/javascript" src="theme.js"></script>
 </body>
 </html>

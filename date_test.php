@@ -25,7 +25,7 @@ echo($days[(date('w'))]),' (МСК)';
 <head>
     <meta charset="utf-8">
     <title>Тайтл</title>
-    <link rel="stylesheet" href="styles3.css">
+    <link rel="stylesheet" href="styles4.css">
 </head>
 <body>
 <header>

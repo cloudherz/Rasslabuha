@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Ошибка! Расслабуха</title>
-    <link rel="stylesheet" href="../styles3.css">
+    <link rel="stylesheet" href="../styles4.css">
     <link rel="shortcut icon" href="../images/domoi.jpg" type="image/jpg">
 </head>
 <body>
